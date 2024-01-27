@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <h2>{{ userDetails.name }}</h2>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -33,11 +34,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }
+  },
+  computed: {
+    ...mapState('users', ['userDetails']),
+  },
 }
 </script>
 
