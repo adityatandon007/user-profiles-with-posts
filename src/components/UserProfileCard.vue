@@ -1,5 +1,5 @@
 <template>
-  <div class="user-profile-card min-h-250 border border-gray-300 rounded-md shadow-md p-4 transition-transform duration-300 transform hover:scale-105">
+  <div class="user-profile-card min-h-250 border border-gray-300 rounded-md shadow-md p-4 transition-transform duration-300 transform">
     <!-- Display user details -->
     <div class="user-details bg-gray-100 p-4 mb-4 rounded-md shadow-md">
       <h2 class="text-2xl font-semibold mb-2">{{ user.name }}</h2>
@@ -23,9 +23,10 @@
     </button>
 
     <!-- Display user posts -->
-    <div v-if="showPosts" class="user-posts mt-4">
+     <!-- Display user posts -->
+     <div v-if="showPosts" class="user-posts mt-4 border rounded-md p-4">
       <user-post v-for="post in userPosts[user.id]" :key="post.id" class="mb-4">
-        <div class="post-title text-lg font-semibold mb-2 text-blue-600">{{ post.title }}</div>
+        <div class="post-title text-lg font-semibold mb-2">{{ post.title }}</div>
         <div class="post-body text-gray-800">{{ post.body }}</div>
       </user-post>
     </div>
