@@ -2,10 +2,9 @@
   "name": "user-profiles",
   "version": "0.1.0",
   "private": true,
-  "module": "nodenext",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --skip-plugins @vue/cli-plugin-eslint",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
