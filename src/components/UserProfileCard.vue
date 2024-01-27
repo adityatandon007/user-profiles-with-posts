@@ -23,8 +23,7 @@
     </button>
 
     <!-- Display user posts -->
-     <!-- Display user posts -->
-     <div v-if="showPosts" class="user-posts mt-4 border rounded-md p-4">
+    <div v-if="showPosts" class="user-posts mt-4 border rounded-md p-4">
       <user-post v-for="post in userPosts[user.id]" :key="post.id" class="mb-4">
         <div class="post-title text-lg font-semibold mb-2">{{ post.title }}</div>
         <div class="post-body text-gray-800">{{ post.body }}</div>
