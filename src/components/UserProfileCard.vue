@@ -1,5 +1,5 @@
 <template>
-  <div class="user-profile-card min-h-250 border border-gray-300 rounded-md shadow-md p-4">
+  <div class="user-profile-card min-h-250 border border-gray-300 rounded-md shadow-md p-4 transition-transform duration-300 transform hover:scale-105">
     <!-- Display user details -->
     <div class="user-details bg-gray-100 p-4 mb-4 rounded-md shadow-md">
       <h2 class="text-2xl font-semibold mb-2">{{ user.name }}</h2>
@@ -15,7 +15,10 @@
     </div>
 
     <!-- Button to toggle user posts visibility -->
-    <button @click="togglePostsVisibility" class="bg-green-500 text-white px-4 py-2 rounded">
+    <button
+      @click="togglePostsVisibility"
+      class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600"
+    >
       {{ showPosts ? 'Hide Posts' : 'Show Posts' }}
     </button>
 

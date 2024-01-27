@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div class="users-container">
+      <div class="text-2xl text-white text-center">User profiles with search and toggled posts functionality</div>
       <UserSearch @search="filterUsers" />
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <UserProfileCard v-for="(user) in filteredUsers" :key="user.id" :user="user" />
@@ -54,11 +55,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  padding: 30px 0;
+  /* Gradient background */
+  background: linear-gradient(135deg, #f06, #9f6);
 }
 
 .users-container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0px auto;
 }
 </style>
