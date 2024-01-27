@@ -21,9 +21,12 @@
     >
       {{ showPosts ? 'Hide Posts' : 'Show Posts' }}
     </button>
-
     <!-- Display user posts -->
     <div v-if="showPosts" class="user-posts mt-4 border rounded-md p-4">
+      <LoaderComponent v-if="loading" />
+      <div v-if="error">
+        {{ error }}
+      </div>
       <user-post v-for="post in userPosts[user.id]" :key="post.id" class="mb-4">
         <div class="post-title text-lg font-semibold mb-2">{{ post.title }}</div>
         <div class="post-body text-gray-800">{{ post.body }}</div>
@@ -35,10 +38,12 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import LoaderComponent from './LoaderComponent.vue'
 
 export default {
   name: 'UserProfileCard',
   components: {
+    LoaderComponent,
     UserPost: () => import('./UserPost.vue'), // Dynamic import for better optimization
   },
   props: {
@@ -53,7 +58,7 @@ export default {
     };
   },
   computed: {
-    ...mapState('users', ['userPosts']),
+    ...mapState('users', ['userPosts', 'loading', 'error']),
   },
   methods: {
     ...mapActions('users', ['fetchUserPosts']),

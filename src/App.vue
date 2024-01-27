@@ -3,7 +3,11 @@
     <div class="users-container">
       <div class="text-2xl text-white text-center">User profiles with search and toggled posts functionality</div>
       <UserSearch @search="filterUsers" />
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <LoaderComponent v-if="loading" />
+      <div v-if="error">
+        {{ error }}
+      </div>
+      <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <UserProfileCard v-for="(user) in filteredUsers" :key="user.id" :user="user" />
       </div>
     </div>
@@ -14,12 +18,14 @@
 import { mapState, mapActions } from 'vuex';
 import UserProfileCard from './components/UserProfileCard.vue';
 import UserSearch from './components/UserSearch.vue';
+import LoaderComponent from './components/LoaderComponent.vue'
 
 export default {
   name: 'App',
   components: {
     UserProfileCard,
-    UserSearch
+    UserSearch,
+    LoaderComponent
   },
   data() {
     return {
@@ -34,7 +40,7 @@ export default {
     });
   },
   computed: {
-    ...mapState('users', ['usersList']),
+    ...mapState('users', ['usersList', 'loading', 'error']),
   },
   methods: {
     ...mapActions('users', ['fetchUsers']),
