@@ -34,17 +34,10 @@ const actions = {
     }
   },
   async fetchUserPosts({ commit }, userId) {
-    try {
-      commit('SET_LOADING', true)
-      const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`);
-      const posts = await response.json();
-      const userPosts = {[userId]: posts}
-      commit('SET_USER_POSTS', userPosts);
-    } catch (error) {
-      commit('SET_ERROR', 'Failed to fetch user posts. Try Again 😔');
-    } finally {
-      commit('SET_LOADING', false)
-    }
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`);
+    const posts = await response.json();
+    const userPosts = {[userId]: posts}
+    commit('SET_USER_POSTS', userPosts);
   },
 };
 

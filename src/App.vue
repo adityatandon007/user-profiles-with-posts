@@ -3,7 +3,7 @@
     <div class="users-container">
       <div class="text-2xl text-white text-center">User profiles with search and toggled posts functionality</div>
       <UserSearch @search="filterUsers" />
-      <LoaderComponent v-if="!loading" size="8rem" />
+      <LoaderComponent v-if="loading" size="8rem" />
       <div v-if="error">
         {{ error }}
       </div>
