@@ -1,13 +1,11 @@
 const state = {
-  userDetails: {
-    name: 'Dummy'
-  },
+  usersList: [],
   userPosts: [],
 };
 
 const mutations = {
-  SET_USER_DETAILS(state, userDetails) {
-    state.userDetails = userDetails;
+  SET_USERS_LIST(state, usersList) {
+    state.usersList = usersList;
   },
   SET_USER_POSTS(state, userPosts) {
     state.userPosts = userPosts;
@@ -15,10 +13,10 @@ const mutations = {
 };
 
 const actions = {
-  async fetchUserDetails({ commit }, userId) {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
-    const userDetails = await response.json();
-    commit('SET_USER_DETAILS', userDetails);
+  async fetchUsers({ commit }) {
+    const response = await fetch('https://jsonplaceholder.typicode.com/users');
+    const usersList = await response.json();
+    commit('SET_USERS_LIST', usersList);
   },
   async fetchUserPosts({ commit }, userId) {
     const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`);

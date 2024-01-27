@@ -1,19 +1,31 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="flex justify-center items-center flex-col">
+    <div class="users-container flex flex-wrap justify-center space-x-4 space-y-4">
+      <UserProfileCard v-for="(user) in usersList" :key="user.id" :user="user" class="mb-4" />
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import UserProfileCard from './components/UserProfileCard.vue';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    UserProfileCard,
+  },
+  created() {
+    // Fetch users when component is created
+    this.fetchUsers();
+  },
+  computed: {
+    ...mapState('users', ['usersList']),
+  },
+  methods: {
+    ...mapActions('users', ['fetchUsers']),
+  },
+};
 </script>
 
 <style lang="scss">
@@ -24,5 +36,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.users-container {
+  max-width: 1200px;
 }
 </style>
