@@ -3,6 +3,10 @@
 User profiles with search and toggled posts functionality.
 Made with vuejs and tailwind css and uses {JSON} Placeholder API for fetching mock data
 
+# Screenshot:
+
+![user-profiles](user-profiles.png)
+
 ## Project setup
 
 ```
