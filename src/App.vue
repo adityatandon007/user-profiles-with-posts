@@ -1,29 +1,48 @@
 <template>
   <div id="app">
-    <div class="users-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      <UserProfileCard v-for="(user) in usersList" :key="user.id" :user="user" />
+    <div class="users-container">
+      <UserSearch @search="filterUsers" />
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <UserProfileCard v-for="(user) in filteredUsers" :key="user.id" :user="user" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import UserProfileCard from './components/UserProfileCard.vue';
 import { mapState, mapActions } from 'vuex';
+import UserProfileCard from './components/UserProfileCard.vue';
+import UserSearch from './components/UserSearch.vue';
 
 export default {
   name: 'App',
   components: {
     UserProfileCard,
+    UserSearch
+  },
+  data() {
+    return {
+      filteredUsers: [],
+    }
   },
   created() {
     // Fetch users when component is created
-    this.fetchUsers();
+    this.fetchUsers().then(() => {
+      // Set both usersList and filteredUsers initially
+      this.filteredUsers = this.usersList.slice();
+    });
   },
   computed: {
     ...mapState('users', ['usersList']),
   },
   methods: {
     ...mapActions('users', ['fetchUsers']),
+    filterUsers(searchTerm) {
+      // Filter users based on the search term
+      this.filteredUsers = this.usersList.filter(user =>
+        user.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    },
   },
 };
 </script>
