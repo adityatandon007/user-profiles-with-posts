@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="user-profile-card min-h-250 border border-gray-300 rounded-md shadow-md p-4">
     <!-- Display user details -->
-    <div class="user-details bg-gray-100 p-4 mb-4">
+    <div class="user-details bg-gray-100 p-4 mb-4 rounded-md">
       <h2 class="text-xl font-bold">{{ user.name }}</h2>
       <p>Email: {{ user.email }}</p>
       <p>Website: {{ user.website }}</p>

@@ -1,7 +1,7 @@
 <template>
-  <div id="app" class="flex justify-center items-center flex-col">
-    <div class="users-container flex flex-wrap justify-center space-x-4 space-y-4">
-      <UserProfileCard v-for="(user) in usersList" :key="user.id" :user="user" class="mb-4" />
+  <div id="app">
+    <div class="users-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <UserProfileCard v-for="(user) in usersList" :key="user.id" :user="user" />
     </div>
   </div>
 </template>
@@ -40,5 +40,6 @@ export default {
 
 .users-container {
   max-width: 1200px;
+  margin: 0 auto;
 }
 </style>
